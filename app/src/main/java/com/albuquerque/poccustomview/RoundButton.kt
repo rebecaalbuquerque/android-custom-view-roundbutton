@@ -6,9 +6,10 @@ import android.support.constraint.ConstraintLayout
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
+import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.round_button.view.*
 
-class RoundButton: ConstraintLayout {
+class RoundButton: RelativeLayout {
 
     constructor(context: Context) : this(context, null)
 
@@ -20,17 +21,17 @@ class RoundButton: ConstraintLayout {
         View.inflate(context, R.layout.round_button, this)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.RoundButton)
-        val size = attributes?.getDimensionPixelSize(R.styleable.RoundButton_sizeButton, (25 * resources.displayMetrics.density).toInt() )
-        val color = attributes?.getColor(R.styleable.RoundButton_colorButton, ContextCompat.getColor(context, R.color.colorPrimary))
-        val src = attributes?.getResourceId(R.styleable.RoundButton_srcButton, 0)
-        val txt = attributes?.getString(R.styleable.RoundButton_textButton)
+        val size = attributes?.getDimensionPixelSize(R.styleable.RoundButton_size, (25 * resources.displayMetrics.density).toInt() )
+        val color = attributes?.getColor(R.styleable.RoundButton_color, ContextCompat.getColor(context, R.color.colorPrimary))
+        val src = attributes?.getResourceId(R.styleable.RoundButton_src, 0)
+        val txt = attributes?.getString(R.styleable.RoundButton_txt)
 
         // Configurando as exceptions
-        if( !attributes.hasValue(R.styleable.RoundButton_srcButton) && !attributes.hasValue(R.styleable.RoundButton_textButton) ){
+        if( !attributes.hasValue(R.styleable.RoundButton_src) && !attributes.hasValue(R.styleable.RoundButton_txt) ){
             throw RuntimeException(toString() + " é preciso ter o atributo srcButton ou textButton")
         }
 
-        if( attributes.hasValue(R.styleable.RoundButton_srcButton) && attributes.hasValue(R.styleable.RoundButton_textButton) ){
+        if( attributes.hasValue(R.styleable.RoundButton_src) && attributes.hasValue(R.styleable.RoundButton_txt) ){
             throw RuntimeException(toString() + " é preciso ter apenas atributo srcButton ou textButton")
         }
 
@@ -38,19 +39,12 @@ class RoundButton: ConstraintLayout {
 
         // Configurando o estilo
         size?.let {
-            val cardButtonLayoutParams = layout.layoutParams
-            val iconButtonLayoutParams = icon.layoutParams
-
-            cardButtonLayoutParams.height = it
-            cardButtonLayoutParams.width = it
-
-            iconButtonLayoutParams.height = (it * 0.7).toInt()
-            iconButtonLayoutParams.width = (it * 0.7).toInt()
-
-            icon.layoutParams = iconButtonLayoutParams
+            setButtonSize(it)
         }
 
-        color?.let { layout.background.setTint(it) }
+        color?.let {
+            setupButtonColor(it)
+        }
 
         src?.let {
             icon.setImageResource(it)
@@ -75,6 +69,10 @@ class RoundButton: ConstraintLayout {
         icon.setImageDrawable(drawable)
     }
 
+    fun setImageResource(res: Int){
+        icon.setImageResource(res)
+    }
+
     fun getText(): String?{
         return if(icon != null) text.text.toString() else null
     }
@@ -82,6 +80,23 @@ class RoundButton: ConstraintLayout {
     fun setText(txt: String){
         if(icon.drawable != null) return
         text.text = txt
+    }
+
+    fun setButtonSize(size: Int){
+        val cardButtonLayoutParams = layout.layoutParams
+        val iconButtonLayoutParams = icon.layoutParams
+
+        cardButtonLayoutParams.height = size
+        cardButtonLayoutParams.width = size
+
+        iconButtonLayoutParams.height = (size * 0.7).toInt()
+        iconButtonLayoutParams.width = (size * 0.7).toInt()
+
+        icon.layoutParams = iconButtonLayoutParams
+    }
+
+    fun setupButtonColor(color: Int){
+        layout.background.setTint(color)
     }
 
 }

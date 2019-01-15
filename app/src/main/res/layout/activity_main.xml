@@ -7,11 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.albuquerque.poccustomview.RoundButton
-        android:id="@+id/roundButton"
+    <com.albuquerque.poccustomview.AvatarImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:colorButton="@android:color/black"
-        app:textButton="1"/>
+        app:avatarSize="100dp"
+        app:buttonPosition="bottomLeft"
+        app:buttonSrc="@drawable/ic_edit_white_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.albuquerque.poccustomview.AvatarImageView>
 
 </android.support.constraint.ConstraintLayout>

@@ -2,10 +2,31 @@
 <resources>
 
     <declare-styleable name="RoundButton">
-        <attr name="colorButton" format="color"/>
-        <attr name="sizeButton" format="dimension"/>
-        <attr name="srcButton" format="reference"/>
-        <attr name="textButton" format="string"/>
+        <attr name="color" format="color"/>
+        <attr name="size" format="dimension"/>
+        <attr name="src" format="reference"/>
+        <attr name="txt" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="AvatarImageView">
+
+        <attr name="buttonPosition">
+            <enum name="top" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="left" value="3" />
+            <enum name="right" value="4" />
+            <enum name="topLeft" value="5" />
+            <enum name="topRight" value="6" />
+            <enum name="bottomLeft" value="7" />
+            <enum name="bottomRight" value="8" />
+        </attr>
+
+        <attr name="buttonColor" format="color"/>
+        <attr name="avatarSize" format="dimension"/>
+        <attr name="buttonSize" format="dimension"/>
+        <attr name="buttonSrc" format="reference"/>
+        <attr name="buttonTxt" format="string"/>
+
     </declare-styleable>
 
 </resources>
