@@ -1,13 +1,15 @@
 package com.albuquerque.poccustomview
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.Drawable
-import android.support.constraint.ConstraintLayout
+import android.graphics.drawable.GradientDrawable
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.round_button.view.*
+
 
 class RoundButton: RelativeLayout {
 
@@ -96,7 +98,11 @@ class RoundButton: RelativeLayout {
     }
 
     fun setupButtonColor(color: Int){
-        layout.background.setTint(color)
+        (layout.background as GradientDrawable).setColor(color)
+    }
+
+    fun setupStroke(size: Int, color: Int){
+        (layout.background as GradientDrawable).setStroke(size, color)
     }
 
 }

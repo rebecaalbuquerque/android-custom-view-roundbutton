@@ -1,6 +1,7 @@
 package com.albuquerque.poccustomview
 
 import android.content.Context
+import android.graphics.Color
 import android.support.constraint.ConstraintLayout
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
@@ -24,22 +25,24 @@ class AvatarImageView: ConstraintLayout {
 
         val avatarSize = attributes?.getDimensionPixelSize(R.styleable.AvatarImageView_avatarSize, (100 * resources.displayMetrics.density).toInt() )
         val buttonPosition = attributes?.getInt(R.styleable.AvatarImageView_buttonPosition, 8)
-        val buttonSize = attributes?.getDimensionPixelSize(R.styleable.AvatarImageView_buttonSize, (28 * resources.displayMetrics.density).toInt() )
+        val buttonSize = attributes?.getDimensionPixelSize(R.styleable.AvatarImageView_buttonSize, 0 )
         val buttonColor = attributes?.getColor(R.styleable.AvatarImageView_buttonColor, ContextCompat.getColor(context, R.color.colorPrimary))
         val buttonSrc = attributes?.getResourceId(R.styleable.AvatarImageView_buttonSrc, 0)
-        val buttonTxt = attributes?.getString(R.styleable.AvatarImageView_buttonTxt)
+        val hasBorder = attributes?.getBoolean(R.styleable.AvatarImageView_hasBorder, false)
 
         avatarSize?.let {
-            val layoutParams = layout.layoutParams
-            val rrParams = roundButton.layoutParams as ConstraintLayout.LayoutParams
+            avatar.layoutParams.height = it
+            avatar.layoutParams.width = it
 
-            layoutParams.height = it
-            layoutParams.width = it
-            rrParams.circleRadius = (it/2 * resources.displayMetrics.density).toInt()
+            (roundButton.layoutParams as ConstraintLayout.LayoutParams).circleRadius = (it/2)
 
-            layout.layoutParams = layoutParams
-            roundButton.layoutParams = rrParams
+        }
 
+        buttonSize?.let {
+            if(it != 0)
+                roundButton.setButtonSize(it)
+            else
+                roundButton.setButtonSize( avatar.layoutParams.width/3 )
         }
 
         buttonPosition?.let {
@@ -57,19 +60,26 @@ class AvatarImageView: ConstraintLayout {
                 else -> 135.toFloat()
             }
 
+            rrLayoutParams.marginEnd = roundButton.layoutParams.width/2
             roundButton.layoutParams = rrLayoutParams
 
         }
-
-        buttonSize?.let { roundButton.setButtonSize(it) }
 
         buttonColor?.let { roundButton.setupButtonColor(it) }
 
         buttonSrc?.let { roundButton.setImageResource(it) }
 
-        buttonTxt?.let { roundButton.setText(it) }
+        hasBorder?.let {
+            if(it){
+                roundButton.setupStroke(6, Color.WHITE)
+            }
+        }
 
         attributes?.recycle()
     }
+
+    fun hideRoundButton() { roundButton.visibility = GONE }
+
+    fun getAvatar() = avatar
 
 }

@@ -5,14 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#cdcdcd"
     tools:context=".MainActivity">
 
     <com.albuquerque.poccustomview.AvatarImageView
+        android:id="@+id/teste"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:avatarSize="100dp"
-        app:buttonPosition="bottomLeft"
-        app:buttonSrc="@drawable/ic_edit_white_24dp"
+        app:avatarSize="80dp"
+        app:buttonPosition="bottomRight"
+        app:hasBorder="true"
+        app:buttonSrc="@drawable/ic_question"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

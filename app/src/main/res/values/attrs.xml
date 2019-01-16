@@ -21,11 +21,11 @@
             <enum name="bottomRight" value="8" />
         </attr>
 
+        <attr name="hasBorder" format="boolean"/>
         <attr name="buttonColor" format="color"/>
         <attr name="avatarSize" format="dimension"/>
         <attr name="buttonSize" format="dimension"/>
         <attr name="buttonSrc" format="reference"/>
-        <attr name="buttonTxt" format="string"/>
 
     </declare-styleable>
 

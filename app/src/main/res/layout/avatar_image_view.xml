@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/avatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/placeholder_usuario"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,14 +22,14 @@
         android:id="@+id/roundButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:size="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircle="@id/avatar"
+        app:layout_constraintCircleAngle="90"
+        app:layout_constraintCircleRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintCircle="@id/avatar"
-        app:layout_constraintCircleAngle="135"
-        app:layout_constraintCircleRadius="50dp"
+        app:size="34dp"
         app:src="@drawable/ic_edit_white_24dp" />
 
 </android.support.constraint.ConstraintLayout>
