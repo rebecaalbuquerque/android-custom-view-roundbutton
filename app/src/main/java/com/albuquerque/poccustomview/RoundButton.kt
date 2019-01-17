@@ -85,16 +85,12 @@ class RoundButton: RelativeLayout {
     }
 
     fun setButtonSize(size: Int){
-        val cardButtonLayoutParams = layout.layoutParams
-        val iconButtonLayoutParams = icon.layoutParams
+        (layout.layoutParams).height = size
+        (layout.layoutParams).width = size
 
-        cardButtonLayoutParams.height = size
-        cardButtonLayoutParams.width = size
+        (icon.layoutParams).height = (size * 0.7).toInt()
+        (icon.layoutParams).width = (size * 0.7).toInt()
 
-        iconButtonLayoutParams.height = (size * 0.7).toInt()
-        iconButtonLayoutParams.width = (size * 0.7).toInt()
-
-        icon.layoutParams = iconButtonLayoutParams
     }
 
     fun setupButtonColor(color: Int){
