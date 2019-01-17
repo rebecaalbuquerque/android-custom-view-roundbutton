@@ -21,6 +21,7 @@
             <enum name="bottomRight" value="8" />
         </attr>
 
+        <attr name="avatarSrc" format="reference"/>
         <attr name="hasBorder" format="boolean"/>
         <attr name="buttonColor" format="color"/>
         <attr name="avatarSize" format="dimension"/>

@@ -12,6 +12,7 @@
         android:id="@+id/teste"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:avatarSrc="@drawable/placeholder_usuario"
         app:avatarSize="100dp"
         app:buttonPosition="bottomRight"
         app:buttonSrc="@drawable/ic_edit_white_24dp"

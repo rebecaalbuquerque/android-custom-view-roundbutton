@@ -24,11 +24,16 @@ class AvatarImageView: ConstraintLayout {
         val attributes = context?.obtainStyledAttributes(attrs, R.styleable.AvatarImageView)
 
         val avatarSize = attributes?.getDimensionPixelSize(R.styleable.AvatarImageView_avatarSize, (100 * resources.displayMetrics.density).toInt() )
+        val avatarSrc = attributes?.getResourceId(R.styleable.AvatarImageView_avatarSrc, 0)
         val buttonPosition = attributes?.getInt(R.styleable.AvatarImageView_buttonPosition, 8)
         val buttonSize = attributes?.getDimensionPixelSize(R.styleable.AvatarImageView_buttonSize, 0 )
         val buttonColor = attributes?.getColor(R.styleable.AvatarImageView_buttonColor, ContextCompat.getColor(context, R.color.colorPrimary))
         val buttonSrc = attributes?.getResourceId(R.styleable.AvatarImageView_buttonSrc, 0)
         val hasBorder = attributes?.getBoolean(R.styleable.AvatarImageView_hasBorder, false)
+
+        avatarSrc?.let {
+            avatar.setImageResource(it)
+        }
 
         avatarSize?.let {
             avatar.layoutParams.height = it
